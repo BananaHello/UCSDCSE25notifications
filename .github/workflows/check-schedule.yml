@@ -1,0 +1,51 @@
+name: Check Schedule for Updates
+
+on:
+  # Run every hour
+  schedule:
+    - cron: '0 * * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Required for committing changes back to the repo
+permissions:
+  contents: write
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Check for updates
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python check_updates.py
+
+      - name: Commit and push if hash changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Check if last_hash.txt was modified
+          if [[ -n $(git status --porcelain last_hash.txt) ]]; then
+            git add last_hash.txt
+            git commit -m "Update schedule hash [skip ci]"
+            git push
+            echo "Hash file updated and committed"
+          else
+            echo "No changes to commit"
+          fi
