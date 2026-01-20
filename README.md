@@ -13,13 +13,11 @@ Monitors https://ucsd-cse25.github.io/schedule/ for changes and sends Discord no
 
 ### 1. Configure Discord Webhook
 
-The Discord webhook URL is already configured in the script. If you need to change it:
-
 1. Go to your repository's Settings → Secrets and variables → Actions
-2. Create or update a secret named `DISCORD_WEBHOOK_URL`
-3. Set the value to your Discord webhook URL
-
-**Current webhook URL** (already set): `https://discord.com/api/webhooks/1463303473885085708/uEdsDl4dWE6VIU5XPaNyR7gDk-X4zkPOfMzCjZsfx1VSxerUg2TzJc-H92qkgpNBVQ7E`
+2. Click "New repository secret"
+3. Name: `DISCORD_WEBHOOK_URL`
+4. Value: Your Discord webhook URL
+5. Click "Add secret"
 
 ### 2. Enable GitHub Actions
 
