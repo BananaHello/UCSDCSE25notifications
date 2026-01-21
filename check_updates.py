@@ -89,6 +89,8 @@ def main():
     else:
         # No change
         print("No changes detected")
+        message = f"✅ Schedule checked - no changes detected at {TARGET_URL}"
+        send_discord_notification(discord_webhook, message)
 
 
 if __name__ == "__main__":
