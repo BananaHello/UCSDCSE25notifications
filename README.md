@@ -4,8 +4,9 @@ Monitors https://ucsd-cse25.github.io/schedule/ for changes and sends Discord no
 
 ## Features
 
-- Checks the schedule page every hour for changes
+- Automatically checks the schedule page every hour for changes
 - Sends Discord notifications when updates are detected
+- Sends a notification on every check (even if no changes)
 - Stores content hash to track changes efficiently
 - Handles first run and network errors gracefully
 
