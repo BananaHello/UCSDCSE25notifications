@@ -1,0 +1,4 @@
+# Add URLs to monitor, one per line.
+# Format: "Label | URL" or just "URL"
+# Lines starting with # are ignored.
+CSE 25 Schedule | https://ucsd-cse25.github.io/schedule/
