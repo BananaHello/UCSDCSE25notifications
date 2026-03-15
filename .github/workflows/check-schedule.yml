@@ -40,12 +40,12 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Check if last_hash.txt was modified
-          if [[ -n $(git status --porcelain last_hash.txt) ]]; then
-            git add last_hash.txt
+          # Check if any hash files were modified
+          if [[ -n $(git status --porcelain hashes/) ]]; then
+            git add hashes/
             git commit -m "Update schedule hash [skip ci]"
             git push
-            echo "Hash file updated and committed"
+            echo "Hash files updated and committed"
           else
             echo "No changes to commit"
           fi
